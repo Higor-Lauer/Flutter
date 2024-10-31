@@ -1,0 +1,119 @@
+import 'package:flutter/material.dart';
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Jogo de Pedra, Papel e Tesoura'),
+          foregroundColor: Colors.white,
+          backgroundColor: Color.fromARGB(255, 255, 88, 32),
+        ),
+        body: Center(
+          child: Column(
+            children: [
+              Mensagem(texto: 'Escolha da Máquina'),
+              Jogada(
+                  altura: 120.00,
+                  largura: 120.00,
+                  linkImagem:
+                      'https://static-00.iconduck.com/assets.00/oncoming-fist-emoji-2048x1803-r24148yy.png',
+                  alturaImagem: 80.00),
+              Mensagem(texto: 'Escolha uma opção abaixo'),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  Jogada(
+                    altura: 80.0,
+                    largura: 80.0,
+                    linkImagem:
+                    'https://static-00.iconduck.com/assets.00/oncoming-fist-emoji-2048x1803-r24148yy.png',
+                    alturaImagem: 50.0,
+                  ),
+                  Jogada(
+                    altura: 80.0,
+                    largura: 80.0,
+                    linkImagem:
+                    'https://static-00.iconduck.com/assets.00/raised-hand-emoji-1774x2048-2y8fmpht.png',
+                    alturaImagem: 50.0,
+                  ),
+                  Jogada(
+                    altura: 80.0,
+                    largura: 80.0,
+                    linkImagem:
+                    'https://static-00.iconduck.com/assets.00/victory-hand-emoji-1387x2048-ifrz3cff.png',
+                    alturaImagem: 50.0,
+                  ),
+                ],
+              ),
+              Mensagem(texto: 'Você ganhou!')
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Mensagem extends StatelessWidget {
+  final String texto;
+
+  const Mensagem({
+    required this.texto,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      padding: EdgeInsets.fromLTRB(0, 40.0, 0, 20.0),
+      child: Text(
+        texto,
+        style: TextStyle(
+          fontWeight: FontWeight.bold,
+          fontSize: 18,
+        ),
+      ),
+    );
+  }
+}
+
+class Jogada extends StatelessWidget {
+  final double altura;
+  final double largura;
+  final String linkImagem;
+  final double alturaImagem;
+
+  const Jogada({
+    required this.altura,
+    required this.largura,
+    required this.linkImagem,
+    required this.alturaImagem,
+  }) : super();
+
+  @override
+  Widget build(BuildContext context) {
+    return Container(
+      width: largura,
+      height: altura,
+      decoration: BoxDecoration(
+        shape: BoxShape.circle,
+        color: Color.fromARGB(255, 240, 240, 240),
+        border: Border.all(
+          color: Color.fromARGB(255, 168, 168, 168),
+          width: 2.0,
+        ),
+      ),
+      child: Center(
+        child: Image.network(
+          linkImagem,
+          height: alturaImagem,
+        ),
+      ),
+    );
+  }
+}
