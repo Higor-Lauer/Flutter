@@ -1,0 +1,90 @@
+import 'package:flutter/material.dart';
+
+class Home extends StatelessWidget {
+  const Home({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Scaffold(
+        appBar: AppBar(
+          centerTitle: true,
+          title: Text('Faça seu login'),
+          foregroundColor: Colors.white,
+          backgroundColor: Colors.blueAccent,
+        ),
+        body: Center(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              Formulario(texto: 'E-mail', icone: Icon(Icons.mail)),
+              Formulario(
+                texto: 'Senha',
+                icone: Icon(Icons.lock),
+              ),
+              Padding(
+                padding: EdgeInsets.all(16),
+                child: ElevatedButton(
+                  onPressed: () {},
+                  style: ButtonStyle(
+                    minimumSize:
+                        WidgetStateProperty.all(Size(double.infinity, 68)),
+                    backgroundColor: WidgetStatePropertyAll(Colors.blueAccent),
+                    foregroundColor: WidgetStatePropertyAll(Colors.white),
+                  ),
+                  child: Text(
+                    'Entrar',
+                    style: TextStyle(fontSize: 18),
+                  ),
+                ),
+              ),
+              BotoesMenores(texto: 'Criar uma nova senha'),
+              BotoesMenores(texto: 'Esqueci minha senha')
+            ],
+          ),
+        ),
+      ),
+    );
+  }
+}
+
+class Formulario extends StatelessWidget {
+  final String texto;
+  final Icon icone;
+
+  const Formulario({
+    required this.texto,
+    required this.icone,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+      padding: EdgeInsets.symmetric(vertical: 8, horizontal: 16),
+      child: TextFormField(
+        decoration: InputDecoration(
+          labelText: texto,
+          border: OutlineInputBorder(),
+          prefixIcon: icone,
+        ),
+      ),
+    );
+  }
+}
+
+class BotoesMenores extends StatelessWidget {
+  final String texto;
+
+  const BotoesMenores({
+    required this.texto,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return Padding(
+        padding: EdgeInsets.fromLTRB(16, 0, 16, 24),
+        child: Text(texto, style: TextStyle(color: Colors.blueAccent)));
+  }
+}
